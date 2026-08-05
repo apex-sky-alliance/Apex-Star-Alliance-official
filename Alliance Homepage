@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Apex Sky Alliance</title>
+
+<link rel="stylesheet" href="style.css">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+
+<header>
+
+<div class="logo">
+
+<h1>APEX SKY ALLIANCE</h1>
+
+<p>Official Website</p>
+
+</div>
+
+<nav>
+
+<ul>
+
+<li><a href="#">Home</a></li>
+
+<li><a href="#">Flights</a></li>
+
+<li><a href="#">Alliance</a></li>
+
+<li><a href="#">Members</a></li>
+
+<li><a href="#">News</a></li>
+
+<li><a href="#">Contact</a></li>
+
+</ul>
+
+</nav>
+
+</header>
+
+<section class="hero">
+
+<div class="hero-content">
+
+<h2>WELCOME TO</h2>
+
+<h1>APEX SKY ALLIANCE</h1>
+
+<p class="subtitle">
+
+Connecting Premium Airlines Worldwide
+
+</p>
+
+<p class="description">
+
+Apex Sky Alliance is a premium global airline alliance,
+connecting passengers through trusted member airlines
+with seamless travel across Asia and the world.
+
+</p>
+
+<div class="hero-buttons">
+
+<a href="#" class="gold-btn">
+
+BOOK A FLIGHT
+
+</a>
+
+<a href="#" class="outline-btn">
+
+FLIGHT STATUS
+
+</a>
+
+</div>
+
+</div>
+
+</section>
+
+<section class="members">
+
+<h2>Member Airlines</h2>
+
+<div class="member-card">
+<h3>🇯🇵 Japan National Air</h3>
+<p>Flag Carrier of Japan</p>
+</div>
+
+<div class="member-card">
+<h3>🌏 NextAsia</h3>
+<p>Crossing Horizons</p>
+</div>
+
+<div class="member-card">
+<h3>🇯🇵 Connect Japan</h3>
+<p>Domestic Network</p>
+</div>
+
+<div class="member-card">
+<h3>❄️ AeroIce</h3>
+<p>Northern Regional Partner</p>
+</div>
+
+<div class="member-card">
+<h3>🌎 Continental Airline</h3>
+<p>Official Member Airline</p>
+</div>
+
+<div class="member-card future">
+<h3>🧊 IceLink</h3>
+<p>Future Member</p>
+</div>
+
+</div>
+
+</section>
+
+<section class="hubs">
+
+<h2>Featured Global Hubs</h2>
+
+<div class="hub-grid">
+
+<div class="hub-card">
+<h3>🇯🇵 Tokyo Haneda (HND)</h3>
+<p>Main Gateway of Apex Sky Alliance</p>
+</div>
+
+<div class="hub-card">
+<h3>🇯🇵 Tokyo Narita (NRT)</h3>
+<p>International Operations Hub</p>
+</div>
+
+<div class="hub-card">
+<h3>🇯🇵 Fukuoka (FUK)</h3>
+<p>Western Japan Hub</p>
+</div>
+
+<div class="hub-card">
+<h3>🇦🇪 Dubai (DXB)</h3>
+<p>Middle East Connection Hub</p>
+</div>
+
+<div class="hub-card">
+<h3>🇬🇺 Guam (GUM)</h3>
+<p>Pacific Gateway</p>
+</div>
+
+<div class="hub-card">
+<h3>🇺🇸 New York JFK</h3>
+<p>North America Hub</p>
+</div>
+
+</div>
+
+</section>
+
+<section class="fleet">
+
+<h2>Alliance Fleet</h2>
+
+<div class="fleet-grid">
+
+<div class="fleet-card">
+
+<h3>Long Haul Fleet</h3>
+
+<p>
+Boeing 777 Family • Boeing 777X • Airbus A350 • Airbus A330
+</p>
+
+</div>
+
+<div class="fleet-card">
+
+<h3>Regional Fleet</h3>
+
+<p>
+B737 Family • Dash Q100
+</p>
+
+</div>
+
+<div class="fleet-card">
+
+<h3>Future Fleet</h3>
+
+<p>
+Next Generation Widebody Aircraft
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+<section class="join">
+
+<div class="join-box">
+
+<h2>Join Apex Sky Alliance</h2>
+
+<p>
+
+Building the future of premium global aviation through
+cooperation, innovation and excellence.
+
+</p>
+
+<a href="#" class="gold-btn">
+
+LEARN MORE
+
+</a>
+
+</div>
+
+</section>
+
+<footer>
+
+<div class="footer-container">
+
+<div>
+
+<h3>APEX SKY ALLIANCE</h3>
+
+<p>Connecting Premium Airlines Across the World.</p>
+
+</div>
+
+<div>
+
+<h4>Alliance</h4>
+
+<ul>
+
+<li>About</li>
+
+<li>Member Airlines</li>
+
+<li>News</li>
+
+<li>Careers</li>
+
+</ul>
+
+</div>
+
+<div>
+
+<h4>Contact</h4>
+
+<p>Email: info@apexskyalliance.com</p>
+
+<p>Tokyo, Japan</p>
+
+</div>
+
+</div>
+
+<hr>
+
+<p class="copyright">
+
+© 2026 Apex Sky Alliance. All Rights Reserved.
+
+</p>
+
+</footer>
+
+<script src="script.js"></script>
+
+</body>
+
+</html>
