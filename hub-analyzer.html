@@ -1,46 +1,189 @@
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
 <meta charset="UTF-8">
-<title>Hub Analyzer</title>
+<title>Apex Sky Alliance Hub Analyzer</title>
+
+<style>
+
+body{
+    font-family: Arial, sans-serif;
+    text-align:center;
+    background:#0f172a;
+    color:white;
+    padding:20px;
+}
+
+h1{
+    color:gold;
+}
+
+select{
+    padding:10px;
+    font-size:16px;
+    margin:10px;
+}
+
+button{
+    padding:10px 20px;
+    font-size:16px;
+    margin:10px;
+    cursor:pointer;
+}
+
+#result{
+    max-width:600px;
+    margin:20px auto;
+    padding:20px;
+    border:2px solid gold;
+    border-radius:10px;
+    background:#1e293b;
+}
+
+</style>
+
 </head>
+
 <body>
 
 <h1>Apex Sky Alliance Hub Analyzer</h1>
 
 <select id="airportSelect"></select>
 
+<br>
+
+<button onclick="analyze()">
+診断
+</button>
+
+<div id="result">
+
+空港を選択して診断してください
+
+</div>
+
 <script>
 
 const airports = [
-  {
-    country:"日本",
-    airport:"東京国際空港（羽田）",
-    code:"HND"
-  },
-  {
-    country:"韓国",
-    airport:"仁川国際空港",
-    code:"ICN"
-  }
+
+{
+country:"日本",
+airport:"東京国際空港（羽田）",
+code:"HND",
+geography:88,
+network:95,
+transit:85,
+facilities:97
+},
+
+{
+country:"韓国",
+airport:"仁川国際空港",
+code:"ICN",
+geography:92,
+network:93,
+transit:95,
+facilities:96
+},
+
+{
+country:"カタール",
+airport:"ハマド国際空港",
+code:"DOH",
+geography:99,
+network:95,
+transit:100,
+facilities:99
+},
+
+{
+country:"アラブ首長国連邦",
+airport:"ドバイ国際空港",
+code:"DXB",
+geography:99,
+network:99,
+transit:99,
+facilities:97
+}
+
 ];
 
-const select =
-document.getElementById("airportSelect");
+const select = document.getElementById("airportSelect");
 
 airports.forEach((airport,index)=>{
 
-  const option =
-  document.createElement("option");
+const option = document.createElement("option");
 
-  option.value=index;
+option.value = index;
 
-  option.textContent=
-  `${airport.country} - ${airport.airport} (${airport.code})`;
+option.textContent =
+`${airport.country} - ${airport.airport} (${airport.code})`;
 
-  select.appendChild(option);
+select.appendChild(option);
 
 });
+
+function analyze(){
+
+const index =
+document.getElementById("airportSelect").value;
+
+const airport =
+airports[index];
+
+const total = Math.round(
+(
+airport.geography +
+airport.network +
+airport.transit +
+airport.facilities
+) / 4
+);
+
+let rank = "";
+
+if(total >= 90){
+rank = "S";
+}
+else if(total >= 80){
+rank = "A";
+}
+else if(total >= 70){
+rank = "B";
+}
+else if(total >= 60){
+rank = "C";
+}
+else{
+rank = "D";
+}
+
+document.getElementById("result").innerHTML = `
+
+<h2>${airport.airport}</h2>
+
+<p><strong>国:</strong> ${airport.country}</p>
+
+<p><strong>IATA:</strong> ${airport.code}</p>
+
+<p><strong>総合点:</strong> ${total}/100</p>
+
+<p><strong>ランク:</strong> ${rank}</p>
+
+<hr>
+
+<p>地理的優位性: ${airport.geography}</p>
+
+<p>国際線ネットワーク: ${airport.network}</p>
+
+<p>乗継利便性: ${airport.transit}</p>
+
+<p>空港規模・設備: ${airport.facilities}</p>
+
+`;
+
+}
 
 </script>
 
