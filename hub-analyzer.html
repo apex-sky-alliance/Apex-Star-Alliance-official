@@ -3,64 +3,510 @@
 <head>
 <meta charset="UTF-8">
 <title>Hub Analyzer</title>
-<style>
-body{
-    font-family: Arial, sans-serif;
-    text-align:center;
-    margin-top:50px;
-}
-button{
-    padding:10px 20px;
-    font-size:18px;
-}
-</style>
 </head>
 <body>
 
 <h1>Apex Sky Alliance Hub Analyzer</h1>
 
-<select id="airport">
-    <option>Doha</option>
-    <option>Dubai</option>
-    <option>Tokyo</option>
-    <option>Singapore</option>
-</select>
-
-<br><br>
+<select id="airportSelect"></select>
 
 <button onclick="analyze()">
 診断
 </button>
 
-<h2 id="result"></h2>
+<div id="result"></div>
 
 <script>
+
+const airports = [
+  /const airports = [
+{
+country:"日本",
+airport:"東京国際空港（羽田）",
+code:"HND",
+geography:88,
+network:95,
+transit:85,
+facilities:97
+},
+{
+country:"韓国",
+airport:"仁川国際空港",
+code:"ICN",
+geography:92,
+network:93,
+transit:95,
+facilities:96
+},
+{
+country:"北朝鮮",
+airport:"平壌国際空港",
+code:"FNJ",
+geography:72,
+network:15,
+transit:10,
+facilities:35
+},
+{
+country:"中国",
+airport:"北京首都国際空港",
+code:"PEK",
+geography:90,
+network:96,
+transit:89,
+facilities:92
+},
+{
+country:"台湾",
+airport:"台湾桃園国際空港",
+code:"TPE",
+geography:91,
+network:88,
+transit:85,
+facilities:91
+},
+{
+country:"モンゴル",
+airport:"チンギスハーン国際空港",
+code:"UBN",
+geography:74,
+network:50,
+transit:40,
+facilities:75
+},
+{
+country:"カザフスタン",
+airport:"アルマトイ国際空港",
+code:"ALA",
+geography:80,
+network:67,
+transit:65,
+facilities:78
+},
+{
+country:"ウズベキスタン",
+airport:"タシュケント国際空港",
+code:"TAS",
+geography:82,
+network:65,
+transit:63,
+facilities:76
+},
+{
+country:"キルギス",
+airport:"マナス国際空港",
+code:"FRU",
+geography:75,
+network:45,
+transit:40,
+facilities:60
+},
+{
+country:"タジキスタン",
+airport:"ドゥシャンベ国際空港",
+code:"DYU",
+geography:70,
+network:38,
+transit:35,
+facilities:55
+},
+{
+country:"トルクメニスタン",
+airport:"アシガバート国際空港",
+code:"ASB",
+geography:76,
+network:48,
+transit:45,
+facilities:73
+},
+{
+country:"アフガニスタン",
+airport:"カーブル国際空港",
+code:"KBL",
+geography:70,
+network:30,
+transit:25,
+facilities:35
+},
+{
+country:"パキスタン",
+airport:"ジンナー国際空港",
+code:"KHI",
+geography:82,
+network:72,
+transit:68,
+facilities:70
+},
+{
+country:"インド",
+airport:"インディラ・ガンディー国際空港",
+code:"DEL",
+geography:92,
+network:94,
+transit:88,
+facilities:90
+},
+{
+country:"ネパール",
+airport:"トリブバン国際空港",
+code:"KTM",
+geography:73,
+network:58,
+transit:50,
+facilities:52
+},
+{
+country:"ブータン",
+airport:"パロ国際空港",
+code:"PBH",
+geography:60,
+network:25,
+transit:20,
+facilities:30
+},
+{
+country:"バングラデシュ",
+airport:"シャージャラル国際空港",
+code:"DAC",
+geography:85,
+network:70,
+transit:65,
+facilities:68
+},
+{
+country:"スリランカ",
+airport:"バンダラナイケ国際空港",
+code:"CMB",
+geography:88,
+network:77,
+transit:75,
+facilities:80
+},
+{
+country:"モルディブ",
+airport:"ヴェラナ国際空港",
+code:"MLE",
+geography:72,
+network:74,
+transit:52,
+facilities:78
+},
+{
+country:"ミャンマー",
+airport:"ヤンゴン国際空港",
+code:"RGN",
+geography:80,
+network:55,
+transit:50,
+facilities:65
+},
+{
+country:"タイ",
+airport:"スワンナプーム国際空港",
+code:"BKK",
+geography:92,
+network:92,
+transit:91,
+facilities:92
+},
+{
+country:"ラオス",
+airport:"ワットタイ国際空港",
+code:"VTE",
+geography:72,
+network:40,
+transit:35,
+facilities:55
+},
+{
+country:"カンボジア",
+airport:"プノンペン国際空港",
+code:"PNH",
+geography:78,
+network:55,
+transit:50,
+facilities:65
+},
+{
+country:"ベトナム",
+airport:"ノイバイ国際空港",
+code:"HAN",
+geography:88,
+network:76,
+transit:72,
+facilities:80
+},
+{
+country:"マレーシア",
+airport:"クアラルンプール国際空港",
+code:"KUL",
+geography:94,
+network:90,
+transit:88,
+facilities:92
+},
+{
+country:"シンガポール",
+airport:"チャンギ国際空港",
+code:"SIN",
+geography:97,
+network:98,
+transit:98,
+facilities:99
+},
+{
+country:"ブルネイ",
+airport:"ブルネイ国際空港",
+code:"BWN",
+geography:75,
+network:45,
+transit:40,
+facilities:70
+},
+{
+country:"インドネシア",
+airport:"スカルノ・ハッタ国際空港",
+code:"CGK",
+geography:90,
+network:90,
+transit:82,
+facilities:88
+},
+{
+country:"フィリピン",
+airport:"ニノイ・アキノ国際空港",
+code:"MNL",
+geography:86,
+network:82,
+transit:70,
+facilities:65
+},
+{
+country:"東ティモール",
+airport:"プレジデンテ・ニコラウ・ロバト国際空港",
+code:"DIL",
+geography:65,
+network:25,
+transit:20,
+facilities:35
+},
+{
+country:"トルコ",
+airport:"イスタンブール空港",
+code:"IST",
+geography:99,
+network:97,
+transit:99,
+facilities:97
+},
+{
+country:"イラン",
+airport:"イマーム・ホメイニ国際空港",
+code:"IKA",
+geography:90,
+network:72,
+transit:75,
+facilities:82
+},
+{
+country:"イラク",
+airport:"バグダード国際空港",
+code:"BGW",
+geography:80,
+network:45,
+transit:40,
+facilities:55
+},
+{
+country:"シリア",
+airport:"ダマスカス国際空港",
+code:"DAM",
+geography:82,
+network:30,
+transit:25,
+facilities:40
+},
+{
+country:"レバノン",
+airport:"ベイルート・ラフィク・ハリリ国際空港",
+code:"BEY",
+geography:85,
+network:65,
+transit:60,
+facilities:65
+},
+{
+country:"イスラエル",
+airport:"ベン・グリオン国際空港",
+code:"TLV",
+geography:92,
+network:88,
+transit:85,
+facilities:90
+},
+{
+country:"ヨルダン",
+airport:"クイーンアリア国際空港",
+code:"AMM",
+geography:92,
+network:75,
+transit:82,
+facilities:85
+},
+{
+country:"サウジアラビア",
+airport:"キング・ハーリド国際空港",
+code:"RUH",
+geography:90,
+network:85,
+transit:80,
+facilities:88
+},
+{
+country:"クウェート",
+airport:"クウェート国際空港",
+code:"KWI",
+geography:88,
+network:72,
+transit:75,
+facilities:82
+},
+{
+country:"バーレーン",
+airport:"バーレーン国際空港",
+code:"BAH",
+geography:92,
+network:78,
+transit:85,
+facilities:88
+},
+{
+country:"カタール",
+airport:"ハマド国際空港",
+code:"DOH",
+geography:99,
+network:95,
+transit:100,
+facilities:99
+},
+{
+country:"アラブ首長国連邦",
+airport:"ドバイ国際空港",
+code:"DXB",
+geography:99,
+network:99,
+transit:99,
+facilities:97
+},
+{
+country:"オマーン",
+airport:"マスカット国際空港",
+code:"MCT",
+geography:90,
+network:75,
+transit:80,
+facilities:88
+},
+{
+country:"イエメン",
+airport:"サヌア国際空港",
+code:"SAH",
+geography:75,
+network:20,
+transit:15,
+facilities:30
+},
+{
+country:"アルメニア",
+airport:"ズヴァルトノッツ国際空港",
+code:"EVN",
+geography:85,
+network:60,
+transit:58,
+facilities:75
+},
+{
+country:"アゼルバイジャン",
+airport:"ヘイダル・アリエフ国際空港",
+code:"GYD",
+geography:92,
+network:78,
+transit:85,
+facilities:92
+},
+{
+country:"ジョージア",
+airport:"トビリシ国際空港",
+code:"TBS",
+geography:87,
+network:65,
+transit:62,
+facilities:78
+},
+{
+country:"キプロス",
+airport:"ラルナカ国際空港",
+code:"LCA",
+geography:90,
+network:72,
+transit:70,
+facilities:82
+},
+{
+country:"コソボ",
+airport:"プリシュティナ国際空港",
+code:"PRN",
+geography:75,
+network:45,
+transit:40,
+facilities:65
+}
+
+}
+];
+/
+];
+
 function analyze() {
 
-    const airport =
-        document.getElementById("airport").value;
+  const index =
+    document.getElementById("airportSelect").value;
 
-    let result = "";
+  const airport = airports[index];
 
-    if (airport === "Doha") {
-        result = "Sランク ⭐<br>世界最高レベルの乗継ハブ";
-    }
+  const total = Math.round(
+    (
+      airport.geography +
+      airport.network +
+      airport.transit +
+      airport.facilities
+    ) / 4
+  );
 
-    if (airport === "Dubai") {
-        result = "Sランク ⭐<br>超巨大国際ハブ";
-    }
+  document.getElementById("result").innerHTML =
+    `
+    <h2>${airport.airport}</h2>
+    <p>コード: ${airport.code}</p>
+    <p>総合点: ${total}</p>
+    `;
 
-    if (airport === "Tokyo") {
-        result = "Aランク ⭐<br>需要は大きいが中継向きではない";
-    }
+const select =
+document.getElementById("airportSelect");
 
-    if (airport === "Singapore") {
-        result = "Sランク ⭐<br>東南アジア最強クラス";
-    }
+airports.forEach((airport,index)=>{
 
-    document.getElementById("result").innerHTML =
-        result;
-}
+  const option =
+  document.createElement("option");
+
+  option.value=index;
+
+  option.textContent=
+  `${airport.country} - ${airport.airport} (${airport.code})`;
+
+  select.appendChild(option);
+
+});
+
 </script>
 
 </body>
