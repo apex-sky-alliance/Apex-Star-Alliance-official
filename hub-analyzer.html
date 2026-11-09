@@ -1,12 +1,48 @@
 <!DOCTYPE html>
-<html>
+<html lang="ja">
 <head>
 <meta charset="UTF-8">
-<title>テスト</title>
+<title>Hub Analyzer</title>
 </head>
 <body>
 
-<h1>表示テスト成功！</h1>
+<h1>Apex Sky Alliance Hub Analyzer</h1>
+
+<select id="airportSelect"></select>
+
+<script>
+
+const airports = [
+  {
+    country:"日本",
+    airport:"東京国際空港（羽田）",
+    code:"HND"
+  },
+  {
+    country:"韓国",
+    airport:"仁川国際空港",
+    code:"ICN"
+  }
+];
+
+const select =
+document.getElementById("airportSelect");
+
+airports.forEach((airport,index)=>{
+
+  const option =
+  document.createElement("option");
+
+  option.value=index;
+
+  option.textContent=
+  `${airport.country} - ${airport.airport} (${airport.code})`;
+
+  select.appendChild(option);
+
+});
+
+</script>
 
 </body>
 </html>
