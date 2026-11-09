@@ -568,20 +568,248 @@ facilities:65
 
 ];
 
-const select = document.getElementById("airportSelect");
+    const europeAirports = [
 
-airports.forEach((airport,index)=>{
+        {
+country:"United Kingdom",
+airport:"London Heathrow Airport",
+code:"LHR",
+geography:96,
+network:99,
+transit:98,
+facilities:95
+},
 
-const option = document.createElement("option");
+{
+country:"Germany",
+airport:"Frankfurt Airport",
+code:"FRA",
+geography:95,
+network:96,
+transit:95,
+facilities:93
+},
 
-option.value = index;
+{
+country:"France",
+airport:"Charles de Gaulle Airport",
+code:"CDG",
+geography:95,
+network:96,
+transit:94,
+facilities:92
+},
 
-option.textContent =
-`${airport.country} - ${airport.airport} (${airport.code})`;
+{
+country:"Netherlands",
+airport:"Amsterdam Schiphol Airport",
+code:"AMS",
+geography:96,
+network:95,
+transit:95,
+facilities:92
+},
 
-select.appendChild(option);
+{
+country:"Spain",
+airport:"Adolfo Suárez Madrid-Barajas Airport",
+code:"MAD",
+geography:90,
+network:90,
+transit:85,
+facilities:90
+},
 
-});
+{
+country:"Switzerland",
+airport:"Zurich Airport",
+code:"ZRH",
+geography:88,
+network:90,
+transit:86,
+facilities:92
+},
+
+{
+country:"Austria",
+airport:"Vienna International Airport",
+code:"VIE",
+geography:88,
+network:84,
+transit:86,
+facilities:88
+},
+
+{
+country:"Belgium",
+airport:"Brussels Airport",
+code:"BRU",
+geography:90,
+network:84,
+transit:82,
+facilities:88
+},
+
+{
+country:"Denmark",
+airport:"Copenhagen Airport",
+code:"CPH",
+geography:90,
+network:87,
+transit:85,
+facilities:90
+},
+
+{
+country:"Finland",
+airport:"Helsinki Airport",
+code:"HEL",
+geography:93,
+network:85,
+transit:90,
+facilities:90
+},
+
+{
+country:"Ireland",
+airport:"Dublin Airport",
+code:"DUB",
+geography:88,
+network:83,
+transit:75,
+facilities:86
+},
+
+{
+country:"Italy",
+airport:"Leonardo da Vinci International Airport",
+code:"FCO",
+geography:88,
+network:87,
+transit:82,
+facilities:88
+},
+
+{
+country:"Norway",
+airport:"Oslo Airport",
+code:"OSL",
+geography:85,
+network:78,
+transit:76,
+facilities:88
+},
+
+{
+country:"Sweden",
+airport:"Stockholm Arlanda Airport",
+code:"ARN",
+geography:85,
+network:80,
+transit:78,
+facilities:87
+},
+
+{
+country:"Portugal",
+airport:"Humberto Delgado Airport",
+code:"LIS",
+geography:86,
+network:84,
+transit:80,
+facilities:86
+},
+
+{
+country:"Poland",
+airport:"Warsaw Chopin Airport",
+code:"WAW",
+geography:88,
+network:82,
+transit:80,
+facilities:85
+},
+
+{
+country:"Czech Republic",
+airport:"Vaclav Havel Airport Prague",
+code:"PRG",
+geography:85,
+network:78,
+transit:76,
+facilities:84
+},
+
+{
+country:"Hungary",
+airport:"Budapest Ferenc Liszt International Airport",
+code:"BUD",
+geography:84,
+network:76,
+transit:74,
+facilities:84
+},
+
+{
+country:"Greece",
+airport:"Athens International Airport",
+code:"ATH",
+geography:84,
+network:80,
+transit:72,
+facilities:84
+},
+
+{
+country:"Iceland",
+airport:"Keflavik International Airport",
+code:"KEF",
+geography:92,
+network:75,
+transit:85,
+facilities:84
+
+    }
+];
+function getCurrentAirportList() {
+
+    const region =
+        document.getElementById("regionSelect").value;
+
+    if(region === "europe"){
+        return europeAirports;
+    }
+
+    return asiaAirports;
+
+}
+
+function updateAirportList() {
+
+    const airports =
+        getCurrentAirportList();
+
+    const select =
+        document.getElementById("airportSelect");
+
+    select.innerHTML = "";
+
+    airports.forEach((airport,index)=>{
+
+        const option =
+            document.createElement("option");
+
+        option.value = index;
+
+        option.textContent =
+            `${airport.country} - ${airport.airport} (${airport.code})`;
+
+        select.appendChild(option);
+
+    });
+
+}
+
 
 function analyze(){
 
@@ -590,31 +818,28 @@ airports[
 document.getElementById("airportSelect").value
 ];
 
-const total = Math.round(
-(
-airport.geography +
-airport.network +
-airport.transit +
-airport.facilities
-) / 4
-);
+function analyze(){
+
+
+    ];
+
 
 let rank;
 let description;
 
-if(total >= 90){
+if(total >= 95){
 rank = "S";
 description = "Global Mega Hub";
 }
-else if(total >= 80){
+else if(total >= 85){
 rank = "A";
 description = "International Hub";
 }
-else if(total >= 70){
+else if(total >= 75){
 rank = "B";
 description = "Major Regional Hub";
 }
-else if(total >= 60){
+else if(total >= 50){
 rank = "C";
 description = "Regional Hub";
 }
@@ -652,6 +877,8 @@ document.getElementById("result").innerHTML = `
 `;
 
 }
+    updateAirportList();
+
 
 </script>
 
