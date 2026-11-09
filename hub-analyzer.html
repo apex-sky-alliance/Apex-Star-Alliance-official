@@ -468,31 +468,53 @@ facilities:65
 ];
 
 function analyze() {
+  const total = Math.round
+  airport.geography +
+  airport.network +
+  airport.transit +
+  airport.facilities
+  ) / 4
+  );
 
-  const index =
-    document.getElementById("airportSelect").value;
+  let rank = "";
+
+  if (total >= 90) rank = "S";
+  else if (total >= 80) rank = "A";
+  else if (total >= 70) rank = "B";
+  else if (total >= 60) rank = "C";
+  else rank = "D";
+
+  
 
   const airport = airports[index];
 
-  const total = Math.round(
-    (
-      airport.geography +
-      airport.network +
-      airport.transit +
-      airport.facilities
-    ) / 4
-  );
+const total = Math.round(
+(
+airport.geography +
+airport.network +
+airport.transit +
+airport.facilities
+) / 4
+);
 
-  document.getElementById("result").innerHTML =
-    `
-    <h2>${airport.airport}</h2>
-    <p>コード: ${airport.code}</p>
-    <p>総合点: ${total}</p>
-    `;
+document.getElementById("result").innerHTML = `
+<h2>${airport.airport}</h2>
 
-const select =
+<p><strong>国:</strong> ${airport.country}</p>
+<p><strong>IATA:</strong> ${airport.code}</p>
+
+<p><strong>総合点:</strong> ${total}/100</p>
+
+<p><strong>ランク:</strong> ${rank}</p>
+
+<p>地理的優位性: ${airport.geography}</p>
+<p>国際線ネットワーク: ${airport.network}</p>
+<p>乗継利便性: ${airport.transit}</p>
+<p>空港規模・設備: ${airport.facilities}</p>
+`;
+
 document.getElementById("airportSelect");
-
+}
 airports.forEach((airport,index)=>{
 
   const option =
