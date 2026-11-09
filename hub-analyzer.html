@@ -460,34 +460,24 @@ geography:75,
 network:45,
 transit:40,
 facilities:65
-}
-
-}
-];
-/
 ];
 
 function analyze() {
-  const total = Math.round
-  airport.geography +
-  airport.network +
-  airport.transit +
-  airport.facilities
-  ) / 4
+
+  const index =
+    document.getElementById("airportSelect").value;
+
+  const airport =
+    airports[index];
+
+  const total = Math.round(
+    (
+      airport.geography +
+      airport.network +
+      airport.transit +
+      airport.facilities
+    ) / 4
   );
-
-  let rank = "";
-
-  if (total >= 90) rank = "S";
-  else if (total >= 80) rank = "A";
-  else if (total >= 70) rank = "B";
-  else if (total >= 60) rank = "C";
-  else rank = "D";
-
-  
-
-  const airport = airports[index];
-
 const total = Math.round(
 (
 airport.geography +
@@ -496,6 +486,14 @@ airport.transit +
 airport.facilities
 ) / 4
 );
+
+let rank = "";
+
+if (total >= 90) rank = "S";
+else if (total >= 80) rank = "A";
+else if (total >= 70) rank = "B";
+else if (total >= 60) rank = "C";
+else rank = "D";
 
 document.getElementById("result").innerHTML = `
 <h2>${airport.airport}</h2>
@@ -513,23 +511,20 @@ document.getElementById("result").innerHTML = `
 <p>空港規模・設備: ${airport.facilities}</p>
 `;
 
-document.getElementById("airportSelect");
-}
-airports.forEach((airport,index)=>{
+
+const select =
+  document.getElementById("airportSelect");
+
+airports.forEach((airport, index) => {
 
   const option =
-  document.createElement("option");
+    document.createElement("option");
 
-  option.value=index;
+  option.value = index;
 
-  option.textContent=
-  `${airport.country} - ${airport.airport} (${airport.code})`;
+  option.textContent =
+    `${airport.country} - ${airport.airport} (${airport.code})`;
 
   select.appendChild(option);
 
 });
-
-</script>
-
-</body>
-</html>
