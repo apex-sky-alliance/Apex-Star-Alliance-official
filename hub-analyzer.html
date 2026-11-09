@@ -1,48 +1,53 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="en">
 
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Apex Sky Alliance Hub Analyzer</title>
 
 <style>
 
 body{
     font-family: Arial, sans-serif;
-    text-align:center;
     background:#0f172a;
     color:white;
+    text-align:center;
     padding:20px;
 }
 
 h1{
-    color:gold;
+    color:#FFD700;
 }
 
-select{
+select,
+button{
     padding:10px;
     font-size:16px;
     margin:10px;
 }
 
 button{
-    padding:10px 20px;
-    font-size:16px;
-    margin:10px;
     cursor:pointer;
 }
 
 #result{
-    max-width:600px;
+    max-width:700px;
     margin:20px auto;
     padding:20px;
-    border:2px solid gold;
-    border-radius:10px;
+    border:2px solid #FFD700;
+    border-radius:12px;
     background:#1e293b;
 }
 
-</style>
+.rank{
+    font-size:32px;
+    font-weight:bold;
+    color:#FFD700;
+}
 
+</style>
 </head>
 
 <body>
@@ -54,13 +59,11 @@ button{
 <br>
 
 <button onclick="analyze()">
-診断
+Analyze Hub
 </button>
 
 <div id="result">
-
-空港を選択して診断してください
-
+Select an airport and click Analyze Hub.
 </div>
 
 <script>
@@ -68,8 +71,8 @@ button{
 const airports = [
 
 {
-country:"日本",
-airport:"東京国際空港（羽田）",
+country:"Japan",
+airport:"Tokyo International Airport (Haneda)",
 code:"HND",
 geography:88,
 network:95,
@@ -78,8 +81,8 @@ facilities:97
 },
 
 {
-country:"韓国",
-airport:"仁川国際空港",
+country:"South Korea",
+airport:"Incheon International Airport",
 code:"ICN",
 geography:92,
 network:93,
@@ -88,8 +91,8 @@ facilities:96
 },
 
 {
-country:"カタール",
-airport:"ハマド国際空港",
+country:"Qatar",
+airport:"Hamad International Airport",
 code:"DOH",
 geography:99,
 network:95,
@@ -98,8 +101,8 @@ facilities:99
 },
 
 {
-country:"アラブ首長国連邦",
-airport:"ドバイ国際空港",
+country:"United Arab Emirates",
+airport:"Dubai International Airport",
 code:"DXB",
 geography:99,
 network:99,
@@ -111,77 +114,87 @@ facilities:97
 
 const select = document.getElementById("airportSelect");
 
-airports.forEach((airport,index)=>{
+airports.forEach((airport, index) => {
 
-const option = document.createElement("option");
+    const option = document.createElement("option");
 
-option.value = index;
+    option.value = index;
 
-option.textContent =
-`${airport.country} - ${airport.airport} (${airport.code})`;
+    option.textContent =
+        `${airport.country} - ${airport.airport} (${airport.code})`;
 
-select.appendChild(option);
+    select.appendChild(option);
 
 });
 
-function analyze(){
+function analyze() {
 
-const index =
-document.getElementById("airportSelect").value;
+    const index =
+        document.getElementById("airportSelect").value;
 
-const airport =
-airports[index];
+    const airport =
+        airports[index];
 
-const total = Math.round(
-(
-airport.geography +
-airport.network +
-airport.transit +
-airport.facilities
-) / 4
-);
+    const total = Math.round(
+        (
+            airport.geography +
+            airport.network +
+            airport.transit +
+            airport.facilities
+        ) / 4
+    );
 
-let rank = "";
+    let rank = "";
+    let description = "";
 
-if(total >= 90){
-rank = "S";
-}
-else if(total >= 80){
-rank = "A";
-}
-else if(total >= 70){
-rank = "B";
-}
-else if(total >= 60){
-rank = "C";
-}
-else{
-rank = "D";
-}
+    if(total >= 90){
+        rank = "S";
+        description = "Global Mega Hub";
+    }
+    else if(total >= 80){
+        rank = "A";
+        description = "International Hub";
+    }
+    else if(total >= 70){
+        rank = "B";
+        description = "Major Regional Hub";
+    }
+    else if(total >= 60){
+        rank = "C";
+        description = "Regional Hub";
+    }
+    else{
+        rank = "D";
+        description = "Local Gateway";
+    }
 
-document.getElementById("result").innerHTML = `
+    document.getElementById("result").innerHTML = `
 
-<h2>${airport.airport}</h2>
+        <h2>${airport.airport}</h2>
 
-<p><strong>国:</strong> ${airport.country}</p>
+        <p><strong>Country:</strong> ${airport.country}</p>
 
-<p><strong>IATA:</strong> ${airport.code}</p>
+        <p><strong>IATA Code:</strong> ${airport.code}</p>
 
-<p><strong>総合点:</strong> ${total}/100</p>
+        <h3>Overall Score</h3>
 
-<p><strong>ランク:</strong> ${rank}</p>
+        <p>${total}/100</p>
 
-<hr>
+        <div class="rank">${rank}</div>
 
-<p>地理的優位性: ${airport.geography}</p>
+        <p>${description}</p>
 
-<p>国際線ネットワーク: ${airport.network}</p>
+        <hr>
 
-<p>乗継利便性: ${airport.transit}</p>
+        <p><strong>Geographic Advantage:</strong> ${airport.geography}</p>
 
-<p>空港規模・設備: ${airport.facilities}</p>
+        <p><strong>International Network:</strong> ${airport.network}</p>
 
-`;
+        <p><strong>Transfer Connectivity:</strong> ${airport.transit}</p>
+
+        <p><strong>Airport Facilities:</strong> ${airport.facilities}</p>
+
+    `;
 
 }
 
