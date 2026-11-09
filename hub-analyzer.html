@@ -811,17 +811,27 @@ function updateAirportList() {
 }
 
 
-function analyze(){
 
-const airport =
-airports[
-document.getElementById("airportSelect").value
-];
 
 function analyze(){
 
+    const airports =
+        getCurrentAirportList();
 
-    ];
+    const airport =
+        airports[
+            document.getElementById("airportSelect").value
+        ];
+
+    const total = Math.round(
+    (
+        airport.geography +
+        airport.network +
+        airport.transit +
+        airport.facilities
+    ) / 4
+    );
+
 
 
 let rank;
