@@ -1,22 +1,65 @@
 <!DOCTYPE html>
-<html>
+<html lang="ja">
 <head>
-  <title>Hub Analyzer</title>
+<meta charset="UTF-8">
+<title>Hub Analyzer</title>
+<style>
+body{
+    font-family: Arial, sans-serif;
+    text-align:center;
+    margin-top:50px;
+}
+button{
+    padding:10px 20px;
+    font-size:18px;
+}
+</style>
 </head>
 <body>
 
 <h1>Apex Sky Alliance Hub Analyzer</h1>
 
+<select id="airport">
+    <option>Doha</option>
+    <option>Dubai</option>
+    <option>Tokyo</option>
+    <option>Singapore</option>
+</select>
+
+<br><br>
+
 <button onclick="analyze()">
-ドーハを診断
+診断
 </button>
 
-<p id="result"></p>
+<h2 id="result"></h2>
 
 <script>
 function analyze() {
-  document.getElementById("result").innerHTML =
-    "ドーハ<br>評価: Sランク<br>中東最強クラスのハブ空港";
+
+    const airport =
+        document.getElementById("airport").value;
+
+    let result = "";
+
+    if (airport === "Doha") {
+        result = "Sランク ⭐<br>世界最高レベルの乗継ハブ";
+    }
+
+    if (airport === "Dubai") {
+        result = "Sランク ⭐<br>超巨大国際ハブ";
+    }
+
+    if (airport === "Tokyo") {
+        result = "Aランク ⭐<br>需要は大きいが中継向きではない";
+    }
+
+    if (airport === "Singapore") {
+        result = "Sランク ⭐<br>東南アジア最強クラス";
+    }
+
+    document.getElementById("result").innerHTML =
+        result;
 }
 </script>
 
