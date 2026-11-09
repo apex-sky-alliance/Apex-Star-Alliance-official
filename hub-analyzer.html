@@ -1,31 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>Apex Sky Alliance Hub Analyzer</title>
 
 <style>
-
 body{
-    font-family: Arial, sans-serif;
     background:#0f172a;
     color:white;
+    font-family:Arial, sans-serif;
     text-align:center;
     padding:20px;
 }
 
 h1{
-    color:#FFD700;
+    color:gold;
 }
 
 select,
 button{
     padding:10px;
-    font-size:16px;
     margin:10px;
+    font-size:16px;
 }
 
 button{
@@ -36,7 +33,7 @@ button{
     max-width:700px;
     margin:20px auto;
     padding:20px;
-    border:2px solid #FFD700;
+    border:2px solid gold;
     border-radius:12px;
     background:#1e293b;
 }
@@ -44,9 +41,8 @@ button{
 .rank{
     font-size:32px;
     font-weight:bold;
-    color:#FFD700;
+    color:gold;
 }
-
 </style>
 </head>
 
@@ -91,110 +87,219 @@ facilities:96
 },
 
 {
-country:"Qatar",
-airport:"Hamad International Airport",
-code:"DOH",
-geography:99,
-network:95,
-transit:100,
-facilities:99
+country:"North Korea",
+airport:"Pyongyang International Airport",
+code:"FNJ",
+geography:72,
+network:15,
+transit:10,
+facilities:35
 },
 
 {
-country:"United Arab Emirates",
-airport:"Dubai International Airport",
-code:"DXB",
-geography:99,
-network:99,
-transit:99,
-facilities:97
+country:"China",
+airport:"Beijing Capital International Airport",
+code:"PEK",
+geography:90,
+network:96,
+transit:89,
+facilities:92
+},
+
+{
+country:"Taiwan",
+airport:"Taiwan Taoyuan International Airport",
+code:"TPE",
+geography:91,
+network:88,
+transit:85,
+facilities:91
+},
+
+{
+country:"Mongolia",
+airport:"Chinggis Khaan International Airport",
+code:"UBN",
+geography:74,
+network:50,
+transit:40,
+facilities:75
+},
+
+{
+country:"Kazakhstan",
+airport:"Almaty International Airport",
+code:"ALA",
+geography:80,
+network:67,
+transit:65,
+facilities:78
+},
+
+{
+country:"Uzbekistan",
+airport:"Tashkent International Airport",
+code:"TAS",
+geography:82,
+network:65,
+transit:63,
+facilities:76
+},
+
+{
+country:"Kyrgyzstan",
+airport:"Manas International Airport",
+code:"FRU",
+geography:75,
+network:45,
+transit:40,
+facilities:60
+},
+
+{
+country:"Tajikistan",
+airport:"Dushanbe International Airport",
+code:"DYU",
+geography:70,
+network:38,
+transit:35,
+facilities:55
+},
+
+{
+country:"Turkmenistan",
+airport:"Ashgabat International Airport",
+code:"ASB",
+geography:76,
+network:48,
+transit:45,
+facilities:73
+},
+
+{
+country:"Afghanistan",
+airport:"Kabul International Airport",
+code:"KBL",
+geography:70,
+network:30,
+transit:25,
+facilities:35
+},
+
+{
+country:"Pakistan",
+airport:"Jinnah International Airport",
+code:"KHI",
+geography:82,
+network:72,
+transit:68,
+facilities:70
+},
+
+{
+country:"India",
+airport:"Indira Gandhi International Airport",
+code:"DEL",
+geography:92,
+network:94,
+transit:88,
+facilities:90
+},
+
+{
+country:"Nepal",
+airport:"Tribhuvan International Airport",
+code:"KTM",
+geography:73,
+network:58,
+transit:50,
+facilities:52
 }
 
 ];
 
 const select = document.getElementById("airportSelect");
 
-airports.forEach((airport, index) => {
+airports.forEach((airport,index)=>{
 
-    const option = document.createElement("option");
+const option = document.createElement("option");
 
-    option.value = index;
+option.value = index;
 
-    option.textContent =
-        `${airport.country} - ${airport.airport} (${airport.code})`;
+option.textContent =
+`${airport.country} - ${airport.airport} (${airport.code})`;
 
-    select.appendChild(option);
+select.appendChild(option);
 
 });
 
-function analyze() {
+function analyze(){
 
-    const index =
-        document.getElementById("airportSelect").value;
+const airport =
+airports[
+document.getElementById("airportSelect").value
+];
 
-    const airport =
-        airports[index];
+const total = Math.round(
+(
+airport.geography +
+airport.network +
+airport.transit +
+airport.facilities
+) / 4
+);
 
-    const total = Math.round(
-        (
-            airport.geography +
-            airport.network +
-            airport.transit +
-            airport.facilities
-        ) / 4
-    );
+let rank;
+let description;
 
-    let rank = "";
-    let description = "";
+if(total >= 90){
+rank = "S";
+description = "Global Mega Hub";
+}
+else if(total >= 80){
+rank = "A";
+description = "International Hub";
+}
+else if(total >= 70){
+rank = "B";
+description = "Major Regional Hub";
+}
+else if(total >= 60){
+rank = "C";
+description = "Regional Hub";
+}
+else{
+rank = "D";
+description = "Local Gateway";
+}
 
-    if(total >= 90){
-        rank = "S";
-        description = "Global Mega Hub";
-    }
-    else if(total >= 80){
-        rank = "A";
-        description = "International Hub";
-    }
-    else if(total >= 70){
-        rank = "B";
-        description = "Major Regional Hub";
-    }
-    else if(total >= 60){
-        rank = "C";
-        description = "Regional Hub";
-    }
-    else{
-        rank = "D";
-        description = "Local Gateway";
-    }
+document.getElementById("result").innerHTML = `
 
-    document.getElementById("result").innerHTML = `
+<h2>${airport.airport}</h2>
 
-        <h2>${airport.airport}</h2>
+<p><strong>Country:</strong> ${airport.country}</p>
 
-        <p><strong>Country:</strong> ${airport.country}</p>
+<p><strong>IATA Code:</strong> ${airport.code}</p>
 
-        <p><strong>IATA Code:</strong> ${airport.code}</p>
+<h3>Overall Score</h3>
 
-        <h3>Overall Score</h3>
+<p>${total}/100</p>
 
-        <p>${total}/100</p>
+<div class="rank">${rank}</div>
 
-        <div class="rank">${rank}</div>
+<p>${description}</p>
 
-        <p>${description}</p>
+<hr>
 
-        <hr>
+<p><strong>Geographic Advantage:</strong> ${airport.geography}</p>
 
-        <p><strong>Geographic Advantage:</strong> ${airport.geography}</p>
+<p><strong>International Network:</strong> ${airport.network}</p>
 
-        <p><strong>International Network:</strong> ${airport.network}</p>
+<p><strong>Transfer Connectivity:</strong> ${airport.transit}</p>
 
-        <p><strong>Transfer Connectivity:</strong> ${airport.transit}</p>
+<p><strong>Airport Facilities:</strong> ${airport.facilities}</p>
 
-        <p><strong>Airport Facilities:</strong> ${airport.facilities}</p>
-
-    `;
+`;
 
 }
 
