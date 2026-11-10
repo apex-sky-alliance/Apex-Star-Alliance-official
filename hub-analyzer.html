@@ -972,6 +972,113 @@ facilities:78
 }
 
 ];
+
+    <option value="americas">North & South America</option>
+
+    const americasAirports = [
+
+{
+country:"United States",
+airport:"Hartsfield–Jackson Atlanta International Airport",
+code:"ATL",
+geography:98,
+network:99,
+transit:96,
+facilities:95
+},
+
+{
+country:"Canada",
+airport:"Toronto Pearson International Airport",
+code:"YYZ",
+geography:92,
+network:90,
+transit:88,
+facilities:90
+},
+
+{
+country:"Mexico",
+airport:"Mexico City International Airport",
+code:"MEX",
+geography:92,
+network:88,
+transit:85,
+facilities:82
+},
+
+{
+country:"Belize",
+airport:"Philip S. W. Goldson International Airport",
+code:"BZE",
+geography:65,
+network:45,
+transit:40,
+facilities:60
+},
+
+{
+country:"Guatemala",
+airport:"La Aurora International Airport",
+code:"GUA",
+geography:72,
+network:55,
+transit:50,
+facilities:65
+},
+
+{
+country:"Honduras",
+airport:"Palmerola International Airport",
+code:"XPL",
+geography:68,
+network:45,
+transit:42,
+facilities:70
+},
+
+{
+country:"El Salvador",
+airport:"El Salvador International Airport",
+code:"SAL",
+geography:80,
+network:70,
+transit:72,
+facilities:78
+},
+
+{
+country:"Nicaragua",
+airport:"Augusto C. Sandino International Airport",
+code:"MGA",
+geography:68,
+network:45,
+transit:40,
+facilities:60
+},
+
+{
+country:"Costa Rica",
+airport:"Juan Santamaria International Airport",
+code:"SJO",
+geography:82,
+network:72,
+transit:68,
+facilities:80
+},
+
+{
+country:"Panama",
+airport:"Tocumen International Airport",
+code:"PTY",
+geography:98,
+network:92,
+transit:96,
+facilities:88
+}
+
+
+    
 function getCurrentAirportList() {
 
     const region =
@@ -981,9 +1088,13 @@ function getCurrentAirportList() {
         return europeAirports;
     }
 
-    return asiaAirports;
+    if(region === "americas"){
+        return americasAirports;
+    }
 
+    return asiaAirports;
 }
+
 
 function updateAirportList() {
 
